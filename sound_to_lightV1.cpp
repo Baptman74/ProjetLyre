@@ -8,6 +8,8 @@
 //definitions variables
 #define ADC_CHAN 0
 #define NB_SAMPLES 100
+
+//fréquence maximum a lire
 #define FRMAX 20000
 
 int gpio_adc_chan = 26;
@@ -16,8 +18,11 @@ int gpio_adc_chan = 26;
 uint8_t tabl_adc_read[NB_SAMPLES];
 kiss_fft_scalar fft_in[NB_SAMPLES];
 kiss_fft_cpx fft_out[NB_SAMPLES];
+
+//creation du tableau de norme des fft
 uint8_t norme_fft[NB_SAMPLES];
 
+//création du tableau de fréquences
 float freqs[NB_SAMPLES];
 
 
@@ -73,6 +78,7 @@ int main(){
     //libere la mémoire allouée
     kiss_fft_free(cfg);
 
+    //remplis le tableau de fréquences 
     float f_max = FRMAX;
     float f_res = f_max / NB_SAMPLES;
     for (int i = 0; i < NB_SAMPLES; i++) {freqs[i] = f_res*i;}
